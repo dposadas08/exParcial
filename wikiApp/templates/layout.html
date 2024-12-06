@@ -12,10 +12,10 @@
             <div class="col-3">
                 <h2>Directorio</h2>
                 <div>
-                    <a href="">Home</a>
+                    <a href="{% url 'wikiApp:inicio' %}">Home</a>
                 </div>
                 <div>
-                    <a href="">Crear nuevo tema</a>
+                    <a href="{% url 'wikiApp:nuevoTema' %}">Crear nuevo tema</a>
                 </div>
                 <div>
                     <a href="">Crear nuevo artículo</a>
@@ -24,9 +24,15 @@
                     <a href="">Articulos</a>
                 </div>
                 <div>
-                    <a href="">Temas</a>
+                    <a href="{% url 'wikiApp:temas' %}">Temas</a>
                 </div>
+            </div>        
+            <div class="col-8">
+                {% block contenido %}
+    
+                {% endblock %}
             </div>
         </div>
+
     </body>
 </html>

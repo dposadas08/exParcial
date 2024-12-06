@@ -3,8 +3,8 @@ from . import views
 
 app_name='wikiApp'
 
-
 urlpatterns = [
-    path('', views.inicio, name='inicio')
-    
+    path('', views.inicio, name='inicio'),
+    path('nuevoTema',views.nuevoTema,name='nuevoTema'),
+    path('temas', views.temas, name='temas')  
 ]
