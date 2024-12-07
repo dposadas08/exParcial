@@ -9,7 +9,7 @@
     <ol>
         {% for articulo in listaArticulos %}
         <br>
-        <li>
+        <li><a href="{% url 'wikiApp:actualizarArticulo' articulo.id %}">Actualizar</a>
             <ul>
                 <li>Titulo : {{ articulo.titulo }}</li>
                 <li>Contenido : {{ articulo.contenido }}</li>

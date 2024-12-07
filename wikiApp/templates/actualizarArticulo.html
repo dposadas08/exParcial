@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block titulo %}
+    Actualizar Articulo
+{% endblock %}
+
+{% block contenido %}
+    <h2>Actualizar articulo</h2>
+    <form class="row" method="post" action="{% url 'wikiApp:actualizarArticulo' articulo.id%}">
+        {% csrf_token %}
+        <div>
+            <label>Ingrese titulo</label>
+            <input type="text" name="tituloArticulo" value="{{ articulo.titulo }}">
+        </div>
+        <div>
+            <label>Ingrese contenido</label>
+            <input type="text" name="contenidoArticulo" value="{{ articulo.contenido }}">
+        </div>
+        <div>
+            <label>Tema</label>
+            <select name="temaArticulo">
+                <option value="0">Seleccionar tema</option>
+                {% for tema in listaTemas %}
+                    {%if articulo.temaR.id is tema.id %}
+                        <option value="{{ tema.id }}" selected>{{ tema.nombre }}</option>
+                    {% else %}
+                        <option value="{{ tema.id }}">{{ tema.nombre }}</option>
+                    {% endif %}  
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Actualizar"> 
+            <a href="{% url 'wikiApp:articulos' %}">Regresar</a>
+        </div>
+    </form>
+{% endblock %}
