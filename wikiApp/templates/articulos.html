@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block titulo %}
+    Articulos registrados
+{% endblock %}
+
+{% block contenido %}
+    <h2>Lista de articulos</h2>
+    <ol>
+        {% for articulo in listaArticulos %}
+        <br>
+        <li>
+            <ul>
+                <li>Titulo : {{ articulo.titulo }}</li>
+                <li>Contenido : {{ articulo.contenido }}</li>
+                {% if articulo.temaR.nombre is null %}
+                    <li>Tema : <i> Sin tema aginado</i></li>
+                {% else %}
+                    <li>Tema : {{ articulo.temaR.nombre }}</li>
+                {% endif %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block titulo %}
+    Nuevo Articulo
+{% endblock %}
+
+{% block contenido %}
+    <h2>Crear nuevo articulo</h2>
+    <form class="row" method="post" action="{% url 'wikiApp:nuevoArticulo' %}">
+        {% csrf_token %}
+        <div>
+            <label>Ingrese titulo</label>
+            <input type="text" name="tituloArticulo">
+        </div>
+        <div>
+            <label>Ingrese contenido</label>
+            <input type="text" name="contenidoArticulo">
+        </div>
+        <div>
+            <label>Tema</label>
+            <select name="temaArticulo">
+                <option value="0">Seleccionar tema</option>
+                {% for tema in listaTemas %}
+                    <option value="{{ tema.id }}">{{ tema.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Registrar">
+        </div>
+    </form>
+{% endblock %}

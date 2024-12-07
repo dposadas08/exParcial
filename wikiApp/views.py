@@ -23,3 +23,32 @@ def temas(request):
     return render(request,'temas.html',{
         'listaTemas': listaTemas
     }) 
+    
+def nuevoArticulo(request):
+    if request.method == 'POST':
+        tituloArticulo = request.POST.get('tituloArticulo')
+        contenidoArticulo = request.POST.get('contenidoArticulo')
+        temaArticulo = request.POST.get('temaArticulo')
+        if temaArticulo != "0":
+            objTema = temaWiki.objects.get(id = temaArticulo)
+            articuloWiki.objects.create(
+                titulo = tituloArticulo,
+                contenido = contenidoArticulo,
+                temaR = objTema
+            )
+        else:
+            articuloWiki.objects.create(
+                titulo = tituloArticulo,
+                contenido = contenidoArticulo
+            )
+            
+        return HttpResponseRedirect(reverse('wikiApp:articulos'))
+    return render(request,'nuevoArticulo.html',{
+        'listaTemas':temaWiki.objects.all()
+    })
+
+def articulos(request):
+    listaArticulos = articuloWiki.objects.all()
+    return render(request,'articulos.html',{
+        'listaArticulos': listaArticulos
+    }) 
