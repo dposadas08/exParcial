@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block titulo %}
+    Nuevo Tema
+{% endblock %}
+
+{% block contenido %}
+<h2>Crear nuevo tema</h2>
+<form class="row" method="post" action="{% url 'wikiApp:actualizarTema' tema.id%}">
+    {% csrf_token %}
+    <div>
+        <label>Nombre del tema</label>
+        <input type="text" name="nombreTema" value="{{ tema.nombre }}">
+    </div>
+    <div>
+        <label>Descripción</label>
+        <input type="text" name="descripcionTema" value="{{ tema.descripcion }}">
+    </div>
+    <div>
+        <input type="submit" value="Actualizar">
+        <a href="{% url 'wikiApp:temas' %}">Regresar</a>
+    </div>
+</form>
+{% endblock %}

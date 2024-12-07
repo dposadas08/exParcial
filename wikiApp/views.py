@@ -6,7 +6,8 @@ from .models import articuloWiki, temaWiki
 
 def inicio(request):
     return render(request,'inicio.html')
-# Seccion Tema
+
+# --- Tema ---
 def nuevoTema(request):
     if request.method == 'POST':
         nombreTema = request.POST.get('nombreTema')
@@ -24,7 +25,20 @@ def temas(request):
         'listaTemas': listaTemas
     }) 
     
-# Seccion Articulo   
+def actualizarTema(request, idTema):   
+    objTema = temaWiki.objects.get(id = idTema)
+    if request.method == 'POST':
+        nombreTema = request.POST.get('nombreTema')
+        descripcionTema = request.POST.get('descripcionTema')
+        objTema.nombre = nombreTema
+        objTema.descripcion = descripcionTema
+        objTema.save()
+        return HttpResponseRedirect(reverse('wikiApp:temas'))
+    return render(request,'actualizarTema.html',{
+        'tema': objTema
+    })
+
+# --- Articulo ---  
 def nuevoArticulo(request):
     if request.method == 'POST':
         tituloArticulo = request.POST.get('tituloArticulo')
@@ -48,11 +62,11 @@ def nuevoArticulo(request):
     })
     
 def actualizarArticulo(request, idArticulo):   
+    objArticulo = articuloWiki.objects.get(id = idArticulo)
     if request.method == 'POST':
         tituloArticulo = request.POST.get('tituloArticulo')
         contenidoArticulo = request.POST.get('contenidoArticulo')
         temaArticulo = request.POST.get('temaArticulo') 
-        objArticulo = articuloWiki.objects.get(id = idArticulo)
         objArticulo.titulo = tituloArticulo
         objArticulo.contenido = contenidoArticulo
         if temaArticulo != "0":
@@ -62,7 +76,6 @@ def actualizarArticulo(request, idArticulo):
             objArticulo.temaR = None
         objArticulo.save()
         return HttpResponseRedirect(reverse('wikiApp:articulos'))
-    objArticulo = articuloWiki.objects.get(id = idArticulo)
     return render(request,'actualizarArticulo.html',{
         'articulo': objArticulo,
         'listaTemas':temaWiki.objects.all()
