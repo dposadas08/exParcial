@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block titulo %}
+    Ver Articulo
+{% endblock %}
+
+{% block contenido %}
+    <h2>{{ articulo.titulo }}</h2>
+    <form class="row" method="post" action="{% url 'wikiApp:actualizarArticulo' articulo.id %}">
+        {% csrf_token %}
+        <div>
+            <label>{{ articulo.contenido }}</label>
+        </div>
+    </form>
+{% endblock %}

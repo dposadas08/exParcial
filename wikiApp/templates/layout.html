@@ -25,7 +25,13 @@
                 </div>
                 <div>
                     <a href="{% url 'wikiApp:articulos' %}">Articulos</a>
+                </div>               
+                <br>
+                {% for tema in listaTemas %}
+                <div>
+                    <a href="{% url 'wikiApp:verTema' tema.id %}">Ver {{ tema.nombre }}</a>
                 </div>
+                {% endfor %}
             </div>        
             <div class="col-8">
                 {% block contenido %}

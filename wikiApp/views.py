@@ -5,7 +5,9 @@ from django.urls import reverse
 from .models import articuloWiki, temaWiki
 
 def inicio(request):
-    return render(request,'inicio.html')
+    return render(request,'inicio.html',{
+        'listaTemas':temaWiki.objects.all()
+    }) 
 
 # --- Tema ---
 def nuevoTema(request):
@@ -17,7 +19,9 @@ def nuevoTema(request):
             descripcion = descripcionTema
         )
         return HttpResponseRedirect(reverse('wikiApp:temas'))
-    return render(request,'nuevoTema.html')
+    return render(request,'nuevoTema.html',{
+        'listaTemas':temaWiki.objects.all()
+    })
 
 def temas(request):
     listaTemas = temaWiki.objects.all()
@@ -35,9 +39,19 @@ def actualizarTema(request, idTema):
         objTema.save()
         return HttpResponseRedirect(reverse('wikiApp:temas'))
     return render(request,'actualizarTema.html',{
-        'tema': objTema
+        'tema': objTema,
+        'listaTemas':temaWiki.objects.all()
     })
-
+    
+def verTema(request, idTema):
+    objTema = temaWiki.objects.get(id = idTema)
+    listaArticulos = objTema.articulowiki_set.all()
+    return render(request,'verTema.html',{
+        'tema':objTema,
+        'listaArticulos':listaArticulos,
+        'listaTemas':temaWiki.objects.all(),
+    })
+    
 # --- Articulo ---  
 def nuevoArticulo(request):
     if request.method == 'POST':
@@ -84,5 +98,13 @@ def actualizarArticulo(request, idArticulo):
 def articulos(request):
     listaArticulos = articuloWiki.objects.all()
     return render(request,'articulos.html',{
-        'listaArticulos': listaArticulos
+        'listaArticulos': listaArticulos,
+        'listaTemas':temaWiki.objects.all()
     }) 
+    
+def verArticulo(request, idArticulo):
+    objArticulo = articuloWiki.objects.get(id = idArticulo) 
+    return render(request,'verArticulo.html',{
+        'articulo': objArticulo,
+        'listaTemas':temaWiki.objects.all()
+    })
