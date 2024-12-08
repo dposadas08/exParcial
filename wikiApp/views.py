@@ -108,3 +108,11 @@ def verArticulo(request, idArticulo):
         'articulo': objArticulo,
         'listaTemas':temaWiki.objects.all()
     })
+
+def buscarArticulo(request):
+    texto = request.POST.get('texto')
+    listaArticulos = articuloWiki.objects.filter(titulo__contains = texto)
+    return render(request,'buscarArticulo.html',{
+        'listaArticulos': listaArticulos,
+        'listaTemas':temaWiki.objects.all()
+    })

@@ -13,4 +13,5 @@ urlpatterns = [
     path('nuevoArticulo', views.nuevoArticulo, name='nuevoArticulo'), 
     path('verArticulo/<str:idArticulo>', views.verArticulo, name='verArticulo'),
     path('actualizarArticulo/<str:idArticulo>', views.actualizarArticulo, name='actualizarArticulo'),
+    path('buscarArticulo', views.buscarArticulo, name='buscarArticulo'),
 ]

@@ -11,6 +11,13 @@
         <div class="row">
             <div class="col-3">
                 <h2>Directorio</h2>
+                <br>
+                <div>
+                    <form method="post" action="{% url 'wikiApp:buscarArticulo' %}">
+                        {% csrf_token %}
+                        <input type="text" name="texto"><input type="submit" value="Buscar">
+                    </form>
+                </div>
                 <div>
                     <a href="{% url 'wikiApp:inicio' %}">Home</a>
                 </div>

@@ -1,18 +1,15 @@
 {% extends "layout.html" %}
 
 {% block titulo %}
-    Tema : {{ tema.nombre }}
+    Resultados de articulos
 {% endblock %}
 
 {% block contenido %}
-<h2>TEMA : {{ tema.nombre }}</h2>
-<div>
-    <h4>LISTA DE ARTICULOS</h4>
+    <h2>Resultados de busqueda</h2> 
     <br>
     <ul>
         {% for articulo in listaArticulos %}
             <li><a href="{% url 'wikiApp:verArticulo' articulo.id %}">{{ articulo.titulo }}</a></li>
         {% endfor %}
     </ul>
-</div>
 {% endblock %}
