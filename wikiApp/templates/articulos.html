@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
 {% block titulo %}
-    Articulos registrados
+    Artículos Registrados
 {% endblock %}
 
 {% block contenido %}
-    <h2>Lista de articulos</h2>
+    <h2><i class="fa-solid fa-list"></i> Lista de artículos</h2>
     <ol>
         {% for articulo in listaArticulos %}
         <br>
-        <li><a href="{% url 'wikiApp:actualizarArticulo' articulo.id %}">Actualizar</a>
+        <li> <a href="{% url 'wikiApp:actualizarArticulo' articulo.id %}"><i class="fa-solid fa-pen"></i> Actualizar</a>
             <ul>
                 <li>Titulo : {{ articulo.titulo }}</li>
                 <li>Contenido : {{ articulo.contenido }}</li>

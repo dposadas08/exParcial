@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block contenido %}
-    <h2>{{ articulo.titulo }}</h2>
-    <form class="row" method="post" action="{% url 'wikiApp:actualizarArticulo' articulo.id %}">
-        {% csrf_token %}
-        <div>
-            <label>{{ articulo.contenido }}</label>
-        </div>
-    </form>
+    <h2>{{ articulo.titulo }}</h2> 
+    <br>   
+    <div>
+        <p>{{ articulo.contenido }}</p>
+    </div>
+    <div style="position: absolute; bottom: 0;">
+        <a href="javascript: history.go(-1)"><i class="fa-solid fa-circle-left"></i> Volver atrás</a>
+    </div>
 {% endblock %}

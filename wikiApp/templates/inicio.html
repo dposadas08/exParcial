@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
-
+ 
 {% block titulo %}
-    Directorio
+    Home
 {% endblock %}
 
 {% block contenido %}
-    Pagina principal del directorio
+    {% load static %}
+    <div style="text-align: center">
+        <img src="{% static 'img/homeWiki.png' %}" width="600px">
+    </div>
 {% endblock %}

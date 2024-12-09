@@ -5,13 +5,15 @@
 {% endblock %}
 
 {% block contenido %}
-<h2>TEMA : {{ tema.nombre }}</h2>
+<h2>TEMA : {{ tema.nombre }}</h2> 
+<br>
 <div>
-    <h4>LISTA DE ARTICULOS</h4>
-    <br>
+    <h5>Lista de artículos</h4>
     <ul>
         {% for articulo in listaArticulos %}
             <li><a href="{% url 'wikiApp:verArticulo' articulo.id %}">{{ articulo.titulo }}</a></li>
+        {% empty %}
+            <p><i class="fa-solid fa-ban"></i> <i>Sin resultados</i></p>
         {% endfor %}
     </ul>
 </div>

@@ -58,7 +58,7 @@ def nuevoArticulo(request):
         tituloArticulo = request.POST.get('tituloArticulo')
         contenidoArticulo = request.POST.get('contenidoArticulo')
         temaArticulo = request.POST.get('temaArticulo')
-        if temaArticulo != "0":
+        if temaArticulo != "":
             objTema = temaWiki.objects.get(id = temaArticulo)
             articuloWiki.objects.create(
                 titulo = tituloArticulo,
@@ -83,7 +83,7 @@ def actualizarArticulo(request, idArticulo):
         temaArticulo = request.POST.get('temaArticulo') 
         objArticulo.titulo = tituloArticulo
         objArticulo.contenido = contenidoArticulo
-        if temaArticulo != "0":
+        if temaArticulo != "":
             objTema = temaWiki.objects.get(id = temaArticulo)
             objArticulo.temaR = objTema
         else:

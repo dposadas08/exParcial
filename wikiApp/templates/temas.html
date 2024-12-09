@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
 {% block titulo %}
-    Temas registrados
+    Temas Registrados
 {% endblock %}
 
 {% block contenido %}
-    <h2>Lista de temas</h2>
+    <h2><i class="fa-solid fa-tags"></i> Lista de temas</h2>
     <ol>
         {% for tema in listaTemas %}
         <br>
-        <li><a href="{% url 'wikiApp:actualizarTema' tema.id %}">Actualizar</a>
+        <li><a href="{% url 'wikiApp:actualizarTema' tema.id %}"><i class="fa-solid fa-pen"></i> Actualizar</a>
             <ul>
                 <li>Nombre : {{ tema.nombre }}</li>
                 <li>Descripción : {{ tema.descripcion }}</li>
